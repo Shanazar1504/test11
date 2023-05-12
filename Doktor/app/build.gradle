@@ -1,0 +1,62 @@
+plugins {
+    id 'com.android.application'
+}
+android {
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "in.naveens.yangyn"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/io.netty.versions.properties'
+    }
+}
+
+dependencies {
+    def lifecycle_version = "2.4.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.6.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    // Material Design
+    implementation 'com.google.android.material:material:1.9.0-alpha01'
+    implementation 'com.hardik.hsdp:scalablesize-android:1.0.1'
+
+
+    // For MQTT Broker
+    implementation 'io.moquette:moquette-broker:0.12.1'
+
+    implementation 'androidx.preference:preference:1.2.0'
+    testImplementation 'junit:junit:4.13.2'
+
+    implementation('org.eclipse.paho:org.eclipse.paho.android.service:1.1.1') {
+        exclude module: 'support-v4'
+    }
+    implementation 'io.moquette:moquette-netty-parser:0.8.1'
+    implementation 'io.moquette:moquette-parser-commons:0.8.1'
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0'
+    implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+
+    implementation 'com.gelitenight.waveview:waveview:1.0.0'
+}
